@@ -4,25 +4,69 @@
     <meta charset="utf-8">
     <title></title>
     <style media="screen">
-    body{background-image: url("back.jpg");}
-      img{width:400px}
+    body {
+      background-image: url("E:/JavaScript/backg.jpg");
+      background-size: auto;
+    }
+      img{width:250px};
     </style>
   </head>
   <body>
     <script type="text/javascript">
       /* クッキーのカウンタ */
+      localStorage.setItem('c_count', 0);
+      cookie_count = parseInt(localStorage.getItem('c_count', 0));
+      
       cookie_count = 0;
-      function cookieClick() {
+      function cookieClick(num) {
         var count_text = document.getElementById('cookie_count')
-        cookie_count = cookie_count + 1;
+        cookie_count = cookie_count + num;
         count_text.textContent = cookie_count;
+      }
+
+      function cursor() {
+        if(cookie_count >= 10) {
+          cookie_count -= 10;
+        }
+        setInterval(cookieClick,10000,1);
+      }
+      function grandma() {
+        if(cookie_count >= 100) {
+          cookie_count -= 100;
+        }
+        setInterval(cookieClick,1000,1);
+      }
+      function farm() {
+        if(cookie_count >= 1100) {
+          cookie_count -= 1100;
+        }
+        setInterval(cookieClick,1000,8);
+      }
+      function mine() {
+        if(cookie_count >= 12000) {
+          cookie_count -= 12000;
+        }
+        setInterval(cookieClick,1000,47);
+      }
+      function factory() {
+        if(cookie_count >= 130000) {
+          cookie_count -= 130000;
+        }
+        setInterval(cookieClick,1000,260);
       }
 
     </script>
     <p>
       <span id="cookie_count"></span> cookies
     </p>
-    <img onclick="cookieClick()" src="E:\JavaScript\cookie.png" alt="">
+    <img onclick="cookieClick(1)" src="E:/JavaScript/cookie.png" alt="">
+    <ul>
+      <li onclick="cursor()">カーソル</li>
+      <li onclick="grandma()">グランマ</li>
+      <li onclick="farm()">ファーム</li>
+      <li onclick="mine()">マイン</li>
+      <li onclick="factory()">ファクトリー</li>
+    </ul>
 
   </body>
 </html>
