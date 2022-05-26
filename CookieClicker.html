@@ -5,61 +5,77 @@
     <title></title>
     <style media="screen">
     body {
-      background-image: url("E:/JavaScript/backg.jpg");
-      background-size: auto;
+      background-image: url("E:/JavaScript/bg_house_kitchen.jpg");
+      background-size: cover;
     }
       img{width:250px};
     </style>
   </head>
   <body>
     <script type="text/javascript">
-      /* クッキーのカウンタ */
-      localStorage.setItem('c_count', 0);
-      cookie_count = parseInt(localStorage.getItem('c_count', 0));
-      
-      cookie_count = 0;
-      function cookieClick(num) {
-        var count_text = document.getElementById('cookie_count')
-        cookie_count = cookie_count + num;
+
+      let ls_count = localStorage.getItem("ls_count");
+      if (ls_count) {
+        cookie_count = parseInt(ls_count);
+      } else {
+        cookie_count = 0;
+      }
+
+      setInterval(save_action,1000);
+      function save_action() {
+        localStorage.setItem("ls_count",cookie_count);
+      }
+
+      setInterval(screan_update,100);
+      function screan_update() {
+        var count_text = document.getElementById('cookie_count');
         count_text.textContent = cookie_count;
+      }
+
+      function cookieClick(num) {
+        cookie_count = cookie_count + num;
       }
 
       function cursor() {
         if(cookie_count >= 10) {
           cookie_count -= 10;
+          setInterval(cookieClick,10000,1);
         }
-        setInterval(cookieClick,10000,1);
       }
+
       function grandma() {
         if(cookie_count >= 100) {
           cookie_count -= 100;
+          setInterval(cookieClick,1000,1);
         }
-        setInterval(cookieClick,1000,1);
       }
+
       function farm() {
         if(cookie_count >= 1100) {
           cookie_count -= 1100;
+          setInterval(cookieClick,1000,8);
         }
-        setInterval(cookieClick,1000,8);
       }
+
       function mine() {
         if(cookie_count >= 12000) {
           cookie_count -= 12000;
+          setInterval(cookieClick,1000,47);
         }
-        setInterval(cookieClick,1000,47);
       }
+
       function factory() {
         if(cookie_count >= 130000) {
           cookie_count -= 130000;
+          setInterval(cookieClick,1000,260);
         }
-        setInterval(cookieClick,1000,260);
       }
 
     </script>
     <p>
       <span id="cookie_count"></span> cookies
     </p>
-    <img onclick="cookieClick(1)" src="E:/JavaScript/cookie.png" alt="">
+    <img onclick="cookieClick(1)" src="E:/JavaScript/sweets_cookie.png" alt="">
     <ul>
       <li onclick="cursor()">カーソル</li>
       <li onclick="grandma()">グランマ</li>
