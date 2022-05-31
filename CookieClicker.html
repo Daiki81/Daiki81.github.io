@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="ja" dir="ltr">
   <head>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
     <meta charset="utf-8">
     <title></title>
     <style media="screen">
@@ -9,6 +13,12 @@
       background-size: cover;
     }
       img{width:250px};
+      /*img{transform: transform ,3s ease}
+      img:hover{transform: scale(1.2);}*/
+      .container{display:flex;}
+      .item1{ flex-grow:2;}
+      .item2{ flex-grow:4;}
+      .item3{ flex-grow:3;}
     </style>
   </head>
   <body>
@@ -33,6 +43,11 @@
       }
 
       function cookieClick(num) {
+        var cookie_img = document.getElementById('cookie_img');
+        cookie_img.classList.remove('animate__animated','animate__shakeX');
+        void cookie_img.offsetWidth;
+        cookie_img.classList.add('animate__animated','animate__shakeX');
+
         cookie_count = cookie_count + num;
       }
 
@@ -72,17 +87,29 @@
       }
 
     </script>
-    <p>
-      <span id="cookie_count"></span> cookies
-    </p>
-    <img onclick="cookieClick(1)" src="E:/JavaScript/sweets_cookie.png" alt="">
-    <ul>
-      <li onclick="cursor()">カーソル</li>
-      <li onclick="grandma()">グランマ</li>
-      <li onclick="farm()">ファーム</li>
-      <li onclick="mine()">マイン</li>
-      <li onclick="factory()">ファクトリー</li>
-    </ul>
+
+    <div class="container">
+      <div class="item1">
+        <p>
+          <span id="cookie_count"></span> cookies
+        </p>
+        <img id="cookie_img" onclick="cookieClick(1)" src="E:/JavaScript/sweets_cookie.png" alt="">
+      </div>
+
+      <div class="item2">
+        <p class="animate__animated animate__bounce">製作途中</p>
+      </div>
+
+      <div class="item3">
+        <ul>
+          <li onclick="cursor()">カーソル</li>
+          <li onclick="grandma()">グランマ</li>
+          <li onclick="farm()">ファーム</li>
+          <li onclick="mine()">マイン</li>
+          <li onclick="factory()">ファクトリー</li>
+        </ul>
+      </div>
+    </div>
 
   </body>
 </html>
