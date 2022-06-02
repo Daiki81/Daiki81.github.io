@@ -12,7 +12,7 @@
       background-image: url("E:/JavaScript/bg_house_kitchen.jpg");
       background-size: cover;
     }
-      img{width:250px};
+      img{width:250px;}
       /*img{transform: transform ,3s ease}
       img:hover{transform: scale(1.2);}*/
       .container{display:flex;}
@@ -36,10 +36,14 @@
         localStorage.setItem("ls_count",cookie_count);
       }
 
-      setInterval(screan_update,100);
-      function screan_update() {
+      su_event_id = setInterval(screen_update,100);
+      function screen_update() {
         var count_text = document.getElementById('cookie_count');
         count_text.textContent = cookie_count;
+      }
+
+      function event_clear() {
+        clearInterval(su_event_id);
       }
 
       function cookieClick(num) {
@@ -89,7 +93,9 @@
     </script>
 
     <div class="container">
+
       <div class="item1">
+        <button id="screen_switch" onclick="event_clear()" type="button" name="button">更新切り替え</button>
         <p>
           <span id="cookie_count"></span> cookies
         </p>
@@ -109,6 +115,7 @@
           <li onclick="factory()">ファクトリー</li>
         </ul>
       </div>
+
     </div>
 
   </body>
