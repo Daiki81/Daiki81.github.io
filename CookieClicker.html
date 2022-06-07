@@ -24,6 +24,9 @@
   <body>
     <script type="text/javascript">
 
+    /*インターバルIDの格納先*/
+    let event_ids = [];
+
       let ls_count = localStorage.getItem("ls_count");
       if (ls_count) {
         cookie_count = parseInt(ls_count);
@@ -58,7 +61,16 @@
       function cursor() {
         if(cookie_count >= 10) {
           cookie_count -= 10;
-          setInterval(cookieClick,10000,1);
+          let r_id = setInterval(cookieClick,10000,1);
+          event_ids.push(r_id);
+          /*event_ids.push(setInterval(cookieClick,10000,1))*/
+        }
+      }
+
+      function sell_cursor() {
+        if (event_ids.length > 0) {
+          let r_id = event_ids.pop();
+          clearInterval(r_id);
         }
       }
 
@@ -66,6 +78,8 @@
         if(cookie_count >= 100) {
           cookie_count -= 100;
           setInterval(cookieClick,1000,1);
+          event_ids.push(r_id);
+          /*event_ids.push(setInterval(cookieClick,10000,1))*/
         }
       }
 
@@ -73,6 +87,8 @@
         if(cookie_count >= 1100) {
           cookie_count -= 1100;
           setInterval(cookieClick,1000,8);
+          event_ids.push(r_id);
+          /*event_ids.push(setInterval(cookieClick,10000,1))*/
         }
       }
 
@@ -80,6 +96,8 @@
         if(cookie_count >= 12000) {
           cookie_count -= 12000;
           setInterval(cookieClick,1000,47);
+          event_ids.push(r_id);
+          /*event_ids.push(setInterval(cookieClick,10000,1))*/
         }
       }
 
@@ -87,6 +105,8 @@
         if(cookie_count >= 130000) {
           cookie_count -= 130000;
           setInterval(cookieClick,1000,260);
+          event_ids.push(r_id);
+          /*event_ids.push(setInterval(cookieClick,10000,1))*/
         }
       }
 
@@ -107,12 +127,21 @@
       </div>
 
       <div class="item3">
+        購入
         <ul>
           <li onclick="cursor()">カーソル</li>
           <li onclick="grandma()">グランマ</li>
           <li onclick="farm()">ファーム</li>
           <li onclick="mine()">マイン</li>
           <li onclick="factory()">ファクトリー</li>
+        </ul>
+        売却
+        <ul>
+          <li onclick="sell_cursor()">カーソル</li>
+          <li onclick="sell_grandma()">グランマ</li>
+          <li onclick="sell_farm()">ファーム</li>
+          <li onclick="sell_mine()">マイン</li>
+          <li onclick="sell_factory()">ファクトリー</li>
         </ul>
       </div>
 
