@@ -44,24 +44,33 @@
 
       class Building {
         //初期値の定義
-        constructor(time,num) {
+        constructor(time,num,cost) {
           this.event_ids = [];
           this.setInterval_time = time;
           this.add_num = num;
+          this.cost = cost;
         }
 
         //カウントアップのメソッド
         count_up(num) {
-          count += num;
+          var cookie_img = document.getElementById('cookie_img');
+          cookie_img.classList.remove('animate__animated','animate__shakeX');
+          void cookie_img.offsetWidth;
+          cookie_img.classList.add('animate__animated','animate__shakeX');
+
+          cookie_count += num;
         }
 
         //購入した場合のメソッド
         buy() {
-          let self = this;
-          let return_id = setInterval(function(){
-            self.count_up(self.add_num);
-          }, 1000);
-          this.event_ids.push(return_id);
+          if (cookie_count > this.cost) {
+            cookie_count -= this.cost;
+            let self = this;
+            let return_id = setInterval(function(){
+              self.count_up(self.add_num);
+            }, self.setInterval_time);
+            this.event_ids.push(return_id);
+          }
         }
 
         //売却のメソッド
@@ -72,11 +81,11 @@
       }
 
       //各施設のオブジェクトをクラスから生成
-      let cursor = new Building(10000,1);
-      let grandma = new Building(1000,1);
-      let farm = new Building(1000,8);
-      let mine = new Building(1000,20);
-      let factory = new Building(1000,40);
+      let cursor = new Building(10000,1,10);
+      let grandma = new Building(1000,1,100);
+      let farm = new Building(1000,8,1100);
+      let mine = new Building(1000,47,12000);
+      let factory = new Building(1000,260,130000);
 
       setInterval(save_action,1000);
       function save_action() {
@@ -102,14 +111,16 @@
         cookie_count = cookie_count + num;
       }
 
-      //function cursor() {
-        //if(cookie_count >= 10) {
-          //cookie_count -= 10;
-          //let r_id = setInterval(cookieClick,10000,1);
-          //event_ids.push(r_id);
-          /*event_ids.push(setInterval(cookieClick,10000,1))*/
-        //}
-      //}
+/*
+      function cursor() {
+        if(cookie_count >= 10) {
+          cookie_count -= 10;
+          let r_id = setInterval(cookieClick,10000,1);
+          event_ids.push(r_id);
+          //event_ids.push(setInterval(cookieClick,10000,1))
+        }
+      }
+*/
 
       function sell_cursor() {
         if (event_ids.length > 0) {
@@ -118,41 +129,43 @@
         }
       }
 
-      //function grandma() {
-        //if(cookie_count >= 100) {
-          //cookie_count -= 100;
-          //setInterval(cookieClick,1000,1);
-          //event_ids.push(r_id);
-          /*event_ids.push(setInterval(cookieClick,10000,1))*/
-        //}
-      //}
+/*
+      function grandma() {
+        if(cookie_count >= 100) {
+          cookie_count -= 100;
+          setInterval(cookieClick,1000,1);
+          event_ids.push(r_id);
+          //event_ids.push(setInterval(cookieClick,1000,1))
+        }
+      }
 
-      //function farm() {
-        //if(cookie_count >= 1100) {
-          //cookie_count -= 1100;
-          //setInterval(cookieClick,1000,8);
-          //event_ids.push(r_id);
-          /*event_ids.push(setInterval(cookieClick,10000,1))*/
-        //}
-      //}
+      function farm() {
+        if(cookie_count >= 1100) {
+          cookie_count -= 1100;
+          setInterval(cookieClick,1000,8);
+          event_ids.push(r_id);
+          //event_ids.push(setInterval(cookieClick,1000,8))
+        }
+      }
 
-      //function mine() {
-        //if(cookie_count >= 12000) {
-          //cookie_count -= 12000;
-          //setInterval(cookieClick,1000,47);
-          //event_ids.push(r_id);
-          /*event_ids.push(setInterval(cookieClick,10000,1))*/
-        //}
-      //}
+      function mine() {
+        if(cookie_count >= 12000) {
+          cookie_count -= 12000;
+          setInterval(cookieClick,1000,47);
+          event_ids.push(r_id);
+          //event_ids.push(setInterval(cookieClick,1000,47))
+        }
+      }
 
-      //function factory() {
-        //if(cookie_count >= 130000) {
-          //cookie_count -= 130000;
-          //setInterval(cookieClick,1000,260);
-          //event_ids.push(r_id);
-          /*event_ids.push(setInterval(cookieClick,10000,1))*/
-        //}
-      //}
+      function factory() {
+        if(cookie_count >= 130000) {
+          cookie_count -= 130000;
+          setInterval(cookieClick,1000,260);
+          event_ids.push(r_id);
+          //event_ids.push(setInterval(cookieClick,1000,260))
+        }
+      }
+*/
 
       /*施設切り替え処理*/
       function buildings_switch() {
